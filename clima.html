@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel=StyleSheet href="style.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <title>Api Clima</title>
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            $("button").on("click", create_request);
+        });
+
+        $(document).ready(function () {
+            $("button").on("click", function (event) {
+
+                var ciudad = $("input").val();
+                var API_URL = "https://api.openweathermap.org/data/2.5/weather?q=" + ciudad + "&units=metric&lang=sp&appid=7bf4abbbb051a4972d970fae729d46e2";
+
+
+                $.get(API_URL, function (response) {
+                    var result = "Hoy, en " + response.name + ", será un día de " + response.weather[0].description + "." +
+                        "<li> La temperatura mínima es de " + response.main.temp_min + "C°," +
+                        "<li> se pronostica una máxima de: " + response.main.temp_max + " C°. </li>" +
+                        "<li> Actualmente la temperatura es de: " + response.main.temp + " C° </li>"
+                    $(".resultado").html(result);
+
+
+                });
+
+
+
+            });
+        });
+
+    </script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body class="m-5 row justify-content-center">
+    <div id=clima class="col-auto bg-success p-5 text-center">
+        <h1>El Tiempo</h1>
+        <div class="resultado"></div>
+        <input class="mt-3" type="text" placeholder="">
+        <button onclick="create_request()">Buscar</button>
+    </div>
+</body>
+
+</html>

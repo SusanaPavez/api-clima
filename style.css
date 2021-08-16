@@ -1,0 +1,17 @@
+h1{
+    color: rgb(207, 241, 252);
+    text-align: center;
+}
+
+li{
+    list-style: none;
+}
+
+body{
+    display: inline-block;
+}
+
+#clima{
+    font-style: italic;
+    color: white;
+}
